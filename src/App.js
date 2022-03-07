@@ -1,5 +1,74 @@
 import React, { Component } from "react";
-import './App.css'
+import styled from "styled-components";
+import { createGlobalStyle } from "styled-components"
+
+const GlobalStyle = createGlobalStyle`
+ *{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+ }
+ body {
+  background-color: #1C658C;
+ }
+`
+
+const MainBox = styled.div`
+height: 100vh;
+display: flex;
+background-color: #1C658C;
+color: #FFF;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+`
+
+const InputBox = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+width: 250px;
+height: 100px;
+padding: 10px;
+margin-bottom: 30px;
+`
+
+const Inputs = styled.input`
+height: 25px;
+padding: 12px;
+margin: 10px;
+font-weight: bolder;
+border: solid rgba(255, 254, 254, 0.685);
+background-color: #D8D2CB;
+color: #1C658C;
+`
+
+const ButtonBox = styled.div`
+width: 500px;
+height: 40px;
+display: flex;
+justify-content: space-evenly;
+`
+
+const Buttons = styled.button`
+padding: 10px;
+font-weight: bolder;
+background-color: #D8D2CB;
+border: solid white;
+color: #1C658C;
+text-transform: uppercase;
+text-align: center;
+border-radius: 10px;
+
+&:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: #398AB9;
+  color: white;
+}
+`
+
 
 class Calculator extends Component {
   state = {
@@ -70,22 +139,23 @@ class Calculator extends Component {
 
     render(){
       return(
-        <div className="MainBox">
+        <MainBox>
+                  <GlobalStyle />
           <h1>Calculator!</h1>
-          <div className="Inputs">
-            <input onChange={this.handleChange} type="number" placeholder="Enter a number:" value={this.state.n1}/>
-            <input onChange={this.handleSecondChange} type="number" placeholder="Enter a number:" value={this.state.n2}/>
-          </div>
+          <InputBox>
+            <Inputs onChange={this.handleChange} type="number" placeholder="Enter a number:" value={this.state.n1}/>
+            <Inputs onChange={this.handleSecondChange} type="number" placeholder="Enter a number:" value={this.state.n2}/>
+          </InputBox>
 
-          <div className="Buttons">
-            <button onClick={this.Add}>Add</button>
-            <button onClick={this.Subt}>Subtract</button>
-            <button onClick={this.Div}>Divide</button>
-            <button onClick={this.Mult}>Multiply</button>
-            <button onClick={this.Clear}>Clear</button>
-          </div>
+          <ButtonBox>
+            <Buttons onClick={this.Add}>Add</Buttons>
+            <Buttons onClick={this.Subt}>Subtract</Buttons>
+            <Buttons onClick={this.Div}>Divide</Buttons>
+            <Buttons onClick={this.Mult}>Multiply</Buttons>
+            <Buttons onClick={this.Clear}>Clear</Buttons>
+          </ButtonBox>
           <h2>Result: {this.state.result}</h2>
-        </div>
+        </MainBox>
       )
     }
 }
